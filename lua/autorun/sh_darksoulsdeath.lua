@@ -21,7 +21,7 @@ if CLIENT then
 
 		if LocalPlayer():Alive() and latch then
 			latch = false
-			print("latch is now false")
+			--print("latch is now false")
 		end
 		
 		
@@ -29,7 +29,7 @@ if CLIENT then
 			starttime = CurTime()
 			alpha = 255
 			latch = true
-			print("latch is now true")
+			--print("latch is now true")
 			timer.Simple(1,function() LocalPlayer():EmitSound("darksouls/death.mp3") end)
 			
 		end
@@ -45,12 +45,12 @@ if CLIENT then
 			
 				if timepassed < 2 then
 					alpha = (timepassed-1) * (255/2)
-					print(alpha)
+					--print(alpha)
 				end
 				
 				if timepassed > 3 then
 					alpha = 255 - (timepassed-1-2) * (255/3)
-					print(alpha)
+					--print(alpha)
 				end
 				
 				if timepassed then
