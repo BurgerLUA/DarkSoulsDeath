@@ -12,16 +12,13 @@ if CLIENT then
 	
 	local delay = 1
 
-
 	function CLIENTPlayerDeath()
 		
-		
-		
+		if not file.Exists( "materials/burger/darksouls/blackbar.vmt", "GAME" ) then return end
 		
 
 		if LocalPlayer():Alive() and latch then
 			latch = false
-			--print("latch is now false")
 		end
 		
 		
@@ -29,7 +26,6 @@ if CLIENT then
 			starttime = CurTime()
 			alpha = 255
 			latch = true
-			--print("latch is now true")
 			timer.Simple(1,function() LocalPlayer():EmitSound("darksouls/death.mp3") end)
 			
 		end
@@ -82,7 +78,9 @@ if CLIENT then
 	
 	end
 	
+	
 	hook.Add("HUDPaint","Dark Souls Clientside Player Death",CLIENTPlayerDeath)
+	
 
 
 
