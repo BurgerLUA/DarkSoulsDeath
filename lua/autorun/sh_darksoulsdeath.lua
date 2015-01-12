@@ -1,6 +1,6 @@
 if CLIENT then
 
-
+	if not file.Exists( "materials/burger/darksouls/blackbar.vmt", "GAME" ) then return end
 
 	local endtime = 0
 	
@@ -14,7 +14,6 @@ if CLIENT then
 
 	function CLIENTPlayerDeath()
 		
-		if not file.Exists( "materials/burger/darksouls/blackbar.vmt", "GAME" ) then return end
 		
 
 		if LocalPlayer():Alive() and latch then
