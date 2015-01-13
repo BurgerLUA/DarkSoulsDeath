@@ -77,13 +77,29 @@ if CLIENT then
 	
 	end
 	
-	
 	hook.Add("HUDPaint","Dark Souls Clientside Player Death",CLIENTPlayerDeath)
 	
+	function HideDamage( Name )
 
+		if Name == "CHudDamageIndicator" and not LocalPlayer():Alive() then
+			return false
+		end
+	 
+	end
 
-
-
-
+	hook.Add( "HUDShouldDraw", "Dark Souls Hide Damage", HideDamage )
+	
+	
 
 end
+
+if SERVER then
+	function OverrideDeathSound()
+		return true
+	end
+	
+	hook.Add("PlayerDeathSound", "OverrideDeathSound", OverrideDeathSound)
+end
+
+
+
