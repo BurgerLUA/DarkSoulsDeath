@@ -9,6 +9,57 @@ end
 
 --[[
 
+function CheckDeath(ply,hitgroup,dmginfo)
+
+	if dmginfo:GetDamage() >= ply:Health() then
+	
+		if not ply.Dying then
+			ply.Dying = true
+			
+			ply:AnimRestartGesture( GESTURE_SLOT_CUSTOM, ACT_GMOD_DEATH, false )
+
+			timer.Create(ply:Nick() .. "_DeathAnim", ply:SequenceDuration() , 1, function()
+			
+				ply:Kill()
+			
+			
+			end)
+			
+			
+			
+		end
+		
+	end
+			
+	if ply.Dying then
+		dmginfo:ScaleDamage(0)
+		ply:SetHealth(0)
+	end
+
+end
+
+hook.Add("ScalePlayerDamage","Dark Souls Death Animations",CheckDeath)
+
+--]]
+
+
+function TestAnimation(ply,cmd,args)
+
+	--ply:AnimRestartGesture(GESTURE_SLOT_CUSTOM, ACT_GMOD_TAUNT_CHEER, true)
+   -- ply:AnimSetGestureWeight(GESTURE_SLOT_CUSTOM, 1)
+		
+	ply:SetSequence(ply:LookupSequence("death_01"))
+		
+		
+	print("GESTURING")
+
+end
+
+concommand.Add( "sendanimation", TestAnimation)
+
+
+--[[
+
 [media]http://www.youtube.com/watch?v=JAWS-Ctv0dw[/media]
 
 [quote]
